@@ -1,0 +1,2 @@
+---
+- name: "Install Node Package Manager {{ python_version }} and pip3"

@@ -1,0 +1,7 @@
+[handler]
+bastion
+
+[handled]
+ui
+api
+rds
