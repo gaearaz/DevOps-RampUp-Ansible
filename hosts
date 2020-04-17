@@ -1,7 +1,8 @@
-[handler]
-bastion
+[ui]
+172.31.6.222
 
-[handled]
-ui
-api
-rds
+[api]
+172.31.37.30
+
+[rds]
+172.31.19.183
