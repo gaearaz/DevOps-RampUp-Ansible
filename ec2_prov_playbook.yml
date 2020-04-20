@@ -14,8 +14,9 @@
 
     - name: Install npm and git
       apt:
-        - npm
-        - git
+        pkg:
+          - npm
+          - git
 
     - name: clone repository
       git:
