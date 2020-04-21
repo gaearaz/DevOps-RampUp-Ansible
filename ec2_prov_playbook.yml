@@ -1,16 +1,14 @@
 ---
-### provision AWS EC2 instance
+### provision AWS EC2 UI instance
 - hosts: ui
-  #connection: local
   gather_facts: false
-  become_method: sudo
-  become_user: ubuntu
-  user: ubuntu
+  become: yes
+  # become_user: ubuntu
   # pre_tasks:
   #   - include_vars: variables.yml
   tasks:
-    - name: Update packages
-      shell: apt update
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes
 
     - name: Install npm and git
       apt:
@@ -26,7 +24,35 @@
 
     - name: execute npm install command
       npm:
-        path: /home/ubuntu/movie-analyst-ui
+        path: /home/ubuntu/ui
 
     - name: execute npm run command using shell
-      shell: node /home/ubuntu/movie-analyst-ui/server.js
+      shell: node /home/ubuntu/ui/server.js
+
+### provision AWS EC2 API instance
+- hosts: api
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Upgrade all apt packages
+      apt: upgrade=dist force_apt_get=yes
+
+    - name: Install npm and git
+      apt:
+        pkg:
+          - npm
+          - git
+
+    - name: clone repository
+      git:
+        repo: https://github.com/gaearaz/movie-analyst-api.git
+        dest: /home/ubuntu/api
+        clone: yes
+
+    - name: execute npm install command
+      npm:
+        path: /home/ubuntu/api
+
+    - name: execute npm run command using shell
+      shell: node /home/ubuntu/api/server.js
