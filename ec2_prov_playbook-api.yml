@@ -48,7 +48,7 @@
       shell: mysql -h ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com -P 3306 --user="root" --password="applicationuser" movie_db < /home/ubuntu/api/data_model/table_creation_and_inserts.sql
 
     - name: replace env variable host
-      shell: sed -i 's/localhost//ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com' /home/ubuntu/api/.env
+      shell: sed -i 's/localhost/ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com/g' /home/ubuntu/api/.env
 
     - name: execute npm install command
       npm:
