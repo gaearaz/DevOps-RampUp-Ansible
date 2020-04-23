@@ -81,7 +81,7 @@
         clone: yes
 
     - name: create data in remote rds
-      shell: mysql -h ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com -P 3306 -u root movie_db < /home/ubuntu/api/data_model/table_creation_and_inserts.sql
+      shell: mysql -h ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com -P 3306 -u root -p applicationuser movie_db < /home/ubuntu/api/data_model/table_creation_and_inserts.sql
 
     - name: execute npm install command
       npm:
