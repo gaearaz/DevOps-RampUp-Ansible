@@ -24,25 +24,19 @@
     #       - mysqlclient # MySQLdb
 
     - name: set process.env.DB_HOST variable (for this task purpose)
-      shell: "export DB_HOST=$DB_HOST"
-      environment:
-        DB_HOST: ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com
+      shell: "export DB_HOST=ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com"
 
     - name: set process.env.DB_USER variable (for this task purpose)
       # shell: "echo $DB_USER"
-      shell: "export DB_USER=$DB_USER"
-      environment:
-        DB_USER: root
+      shell: "export DB_USER=root"
 
+      # environment:
+      #   DB_USER: root
     - name: set process.env.DB_PASS variable (for this task purpose)
-      shell: "export DB_PASS=$DB_PASS"
-      environment:
-        DB_PASS: applicationuser
+      shell: "export DB_PASS=applicationuser"
 
     - name: set process.env.DB_NAME variable (for this task purpose)
-      shell: "export DB_NAME=$DB_NAME"
-      environment:
-        DB_NAME: movie_db
+      shell: "export DB_NAME=movie_db"
 
     - name: clone repository
       git:
