@@ -27,7 +27,7 @@
         path: /home/ubuntu/ui
 
     - name: execute npm run command using shell
-      shell: node /home/ubuntu/ui/server.js > /dev/null 2>&1 &
+      shell: nohup node /home/ubuntu/ui/server.js >> app.log 2>&1 &
 
 ### provision AWS EC2 API instance
 - hosts: api
@@ -88,4 +88,4 @@
         path: /home/ubuntu/api
 
     - name: execute npm run command using shell
-      shell: node /home/ubuntu/api/server.js > /dev/null 2>&1 &
+      shell: nohup node /home/ubuntu/api/server.js >> app.log 2>&1 &
