@@ -38,17 +38,50 @@
     - name: Upgrade all apt packages
       apt: upgrade=dist force_apt_get=yes
 
-    - name: Install npm and git
+    - name: Install necessary apt packages
       apt:
         pkg:
           - npm
           - git
+          - mysql-client
+          # - python-pip #pip2
+          # - python3-pip #pip3
+          # - python-dev
+          # - libmysqlclient-dev #mysqlclient
+          # - python-setuptools #to use pip
+          # - python-pymysql
+    # - pip:
+    #     name:
+    #       - mysqlclient # MySQLdb
+
+    - name: set process.env.DB_HOST variable (for this task purpose)
+      shell: "echo $DB_HOST"
+      environment:
+        DB_HOST: ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com
+
+    - name: set process.env.DB_USER variable (for this task purpose)
+      shell: "echo $DB_USER"
+      environment:
+        DB_USER: root
+
+    - name: set process.env.DB_PASS variable (for this task purpose)
+      shell: "echo $DB_PASS"
+      environment:
+        DB_PASS: applicationuser
+
+    - name: set process.env.DB_NAME variable (for this task purpose)
+      shell: "echo $DB_NAME"
+      environment:
+        DB_NAME: movie_db
 
     - name: clone repository
       git:
         repo: https://github.com/gaearaz/movie-analyst-api.git
         dest: /home/ubuntu/api
         clone: yes
+
+    - name: create data in remote rds
+      shell: mysql -h ansrds.cyyo1covxjss.us-east-2.rds.amazonaws.com -P 3306 -u root movie_db < /home/ubuntu/api/data_model/table_creation_and_inserts.sql
 
     - name: execute npm install command
       npm:
