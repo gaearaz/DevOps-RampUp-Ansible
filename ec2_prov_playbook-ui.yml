@@ -22,6 +22,9 @@
         dest: /home/ubuntu/ui
         clone: yes
 
+    - name: replace env variable backhost
+      shell: sed -i 's/localhost/172.31.37.30/g' /home/ubuntu/ui/.env
+
     - name: execute npm install command
       npm:
         path: /home/ubuntu/ui
