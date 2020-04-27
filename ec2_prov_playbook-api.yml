@@ -55,4 +55,5 @@
         path: /home/ubuntu/api
 
     - name: execute npm run command using shell
-      shell: node /home/ubuntu/api/server.js
+      # shell: node /home/ubuntu/api/server.js
+      shell: pm2 start /home/ubuntu/api/server.js

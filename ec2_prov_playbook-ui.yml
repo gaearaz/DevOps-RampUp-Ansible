@@ -31,4 +31,5 @@
 
     - name: execute npm run command using shell
       # shell: nohup node /home/ubuntu/ui/server.js >> app.log 2>&1 &
-      shell: node /home/ubuntu/ui/server.js
+      # shell: node /home/ubuntu/ui/server.js
+      shell: pm2 start /home/ubuntu/ui/server.js
